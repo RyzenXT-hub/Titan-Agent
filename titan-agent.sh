@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if the script is being run as root
+if [ "$EUID" -ne 0 ]; then
+    echo -e "\e[33mPlease run this script as root or use sudo.\e[0m"
+    exit 1
+fi
+
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
