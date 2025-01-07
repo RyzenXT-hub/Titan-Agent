@@ -21,7 +21,10 @@ curl -O https://raw.githubusercontent.com/RyzenXT-hub/Titan-Agent/main/titan-age
 ```
 curl -O https://raw.githubusercontent.com/RyzenXT-hub/Titan-Agent/main/uninstall-agent.sh && chmod u+x uninstall-agent.sh && ./uninstall-agent.sh
 ```
-
+* Check Log Service :
+```
+journalctl -u titan-agent -n 100 -f
+```
 ## One-Time Installation Script for Titan Agent with Multipass on Linux:
 
 This script automates the installation of the Titan Agent and Multipass on Linux. It supports various Linux distributions (Ubuntu/Debian, Fedora, CentOS/RHEL) by detecting the OS and running the necessary commands.
