@@ -13,8 +13,13 @@
 
 ## How to use bash shell
 
+* Install : 
 ```
 curl -O https://raw.githubusercontent.com/RyzenXT-hub/Titan-Agent/main/titan-agent.sh && chmod u+x titan-agent.sh && ./titan-agent.sh
+```
+* Uninstall : 
+```
+curl -O https://raw.githubusercontent.com/RyzenXT-hub/Titan-Agent/main/uninstall-agent.sh && chmod u+x uninstall-agent.sh && ./uninstall-agent.sh
 ```
 
 ## One-Time Installation Script for Titan Agent with Multipass on Linux:
