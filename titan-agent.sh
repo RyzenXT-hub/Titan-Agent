@@ -17,28 +17,29 @@ detect_os() {
     fi
 }
 
-install_snap() {
-    echo -e "\e[33mDetecting Linux distribution...\e[0m"
+install_required_apps() {
+    echo -e "\e[33mInstalling required applications...\e[0m"
     case "$OS" in
         ubuntu|debian)
-            echo -e "\e[33mUsing Ubuntu/Debian...\e[0m"
-            sudo apt update && sudo apt install -y snapd
+            sudo apt update
+            sudo apt install -y snapd wget unzip zip
             ;;
         fedora)
-            echo -e "\e[33mUsing Fedora...\e[0m"
-            sudo dnf install -y snapd
+            sudo dnf install -y snapd wget unzip zip
             ;;
         centos|rhel)
-            echo -e "\e[33mUsing CentOS/RHEL...\e[0m"
-            sudo yum install -y snapd
+            sudo yum install -y snapd wget unzip zip
             ;;
         *)
             echo -e "\e[33mUnsupported distribution: $OS\e[0m"
             exit 1
             ;;
     esac
-    sudo systemctl enable --now snapd.socket
+}
+
+install_snap() {
     echo -e "\e[33mSnap has been successfully installed.\e[0m"
+    sudo systemctl enable --now snapd.socket
 }
 
 install_multipass() {
@@ -93,6 +94,7 @@ EOF'
 }
 
 detect_os
+install_required_apps
 install_snap
 install_multipass
 install_titan_agent
