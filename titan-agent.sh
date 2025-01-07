@@ -66,6 +66,7 @@ install_titan_agent() {
     sudo cp /opt/titanagent/agent /usr/local/bin/
     rm /tmp/agent-linux.zip
 
+    echo -e "\e[33mPlease visit https://test4.titannet.io/ to obtain your Titan key.\e[0m"
     read -p "$(echo -e '\e[33mEnter your Titan key: \e[0m')" titan_key
 
     echo -e "\e[33mSetting up systemd service for Titan Agent...\e[0m"
