@@ -70,7 +70,9 @@ install_titan_agent() {
     read -p "$(echo -e '\e[33mEnter your Titan key: \e[0m')" titan_key
 
     echo -e "\e[33mSetting up systemd service for Titan Agent...\e[0m"
-    sudo bash -c 'cat > /etc/systemd/system/titan-agent.service <<EOF
+    
+    # Insert the Titan key directly into the ExecStart command in systemd service file
+    sudo bash -c "cat > /etc/systemd/system/titan-agent.service <<EOF
 [Unit]
 Description=Titan Agent Service
 After=network.target
@@ -82,7 +84,7 @@ User=root
 
 [Install]
 WantedBy=multi-user.target
-EOF'
+EOF"
 
     sudo systemctl daemon-reload
     sudo systemctl enable titan-agent.service
