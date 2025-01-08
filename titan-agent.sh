@@ -69,6 +69,7 @@ install_titan_agent() {
     echo -e "\e[33mPlease visit https://test4.titannet.io/ to obtain your Titan key.\e[0m"
     read -p "$(echo -e '\e[33mEnter your Titan key: \e[0m')" titan_key
 
+    # Ensure the Titan key is set in an environment variable
     echo -e "\e[33mSetting up systemd service for Titan Agent...\e[0m"
     sudo bash -c 'cat > /etc/systemd/system/titan-agent.service <<EOF
 [Unit]
@@ -76,7 +77,8 @@ Description=Titan Agent Service
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/agent --working-dir=/opt/titanagent --server-url=https://test4-api.titannet.io --key='$titan_key'
+Environment="TITAN_KEY=$titan_key"
+ExecStart=/usr/local/bin/agent --working-dir=/opt/titanagent --server-url=https://test4-api.titannet.io --key=$TITAN_KEY
 Restart=always
 User=root
 
@@ -94,6 +96,7 @@ EOF'
     echo -e "\e[33mInstallation complete. Titan Agent is set to run automatically on reboot.\e[0m"
 }
 
+# Execute the functions
 detect_os
 install_required_apps
 install_snap
