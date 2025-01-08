@@ -20,7 +20,7 @@ remove_titan_agent() {
     sudo systemctl daemon-reload
 
     echo -e "\e[33mRemoving Titan Agent files...\e[0m"
-    sudo rm -rf /opt/titanagent
+    sudo rm -rf /root/opt/
     sudo rm /usr/local/bin/agent
 
     echo -e "\e[33mTitan Agent has been successfully removed.\e[0m"
